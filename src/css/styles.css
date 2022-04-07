@@ -1,0 +1,66 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior: smooth;
+    margin: 0 auto;
+}
+
+main{
+    margin: 30px auto;
+    text-align:center;
+}
+h2{
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 50px auto;
+    text-align: center;
+}
+
+form{
+    margin: 20px auto;
+}
+
+input[type="text"], input[type="submit"]{
+    padding:10px;
+    border-radius:5px;
+    border:1px solid #ccc;
+    margin-bottom:10px;
+}
+
+
+
+button{
+    border-radius:5px;
+    border:1px solid #ccc;
+    margin-bottom:10px;
+    margin-left: 10px;
+    /* margin-right: 10px; */
+    padding: 4px;
+    border-radius: 7px;
+}
+
+button:hover{
+    background-color: #ccc;
+}
+
+
+button:hover{
+    transform: scale(.9);
+    transition: transform 400ms ease-in-out;
+}
+
+ul{
+    margin: 40px auto;
+}
+
+li{
+   text-align: center;
+}
+
+button{
+
+}

@@ -1,0 +1,14 @@
+que es la reactivad?
+
+se ve principalmente en los datos de la aplicación
+los cambios que vemos en la UI se modifican en razón de la modificación de los datos de la aplicación
+
+¿que es el estado?
+- es una forma "elegante" de llamarle a los datos de la aplicación, EN UN MOMENTO EN PARTICULAR DE LA APLICACIOn
+
+- ¿ que es la UI basada en el estado?
+
+en razón a los cambios que surgen la apliacion se va a renderizar nuevamente
+
+estas interfaces visuales se manejan en pequeños elementos llamados COMPONENTES
+     UN COMPONENTE ES UN PATRÓN VISUAL REPETIDO, CUMPLEN UNA FUNCION UNICA ( SON REUTILIZABLES  )
