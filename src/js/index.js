@@ -17,10 +17,6 @@ const agregarTarea = () => {
 };
 
 
-
-
-
-
 function crearEliminador() {
   const li = d.getElementsByTagName("li");
   const lista = [...li];
