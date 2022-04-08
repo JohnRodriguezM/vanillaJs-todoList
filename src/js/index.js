@@ -26,12 +26,6 @@ function crearEliminador() {
   lista.forEach((item, index) => {
     btns[index].addEventListener("click", () => {
       item.remove();
-     /*  let p = d.createElement("p");
-      document.querySelector('header').append(p) */
-      /* let confirm = confirm('quieres eliminar?')
-        if(confirm) {
-            alert(`Tarea Eliminada, te quedan ${--lista.length}`)} */
-      /* btns[index].remove(); */
     });
   });
 }
