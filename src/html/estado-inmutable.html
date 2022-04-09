@@ -38,30 +38,30 @@
         }
         // setState(state)
         const setState = obj => {
-            for(let key in obj){
-                if(obj.hasOwnProperty(key)){
+            for (let key in obj) {
+                if (obj.hasOwnProperty(key)) {
                     state[key] = obj[key];
                 }
             }
             render()
         }
-
         // useState(state)
-        const getState = () => {
-            JSON.parse(JSON.stringify(state))
+        const useState = () => {
+            return JSON.parse(JSON.stringify(state))
         }
-        getState()
 
         const template = () => {
-            if (state.todoList.length < 1) return `<p>sin tareas</p>`;
-           
-            let todos = state.todoList.map((el, index) => `
-            <li>${el}</li>`).join(' ')
+            let estadoTodos = useState().todoList;
+
+            if (estadoTodos < 1) return `<p>sin tareas</p>`;
+            let todos = estadoTodos.map(el => {
+                return `<li>${el}</li>`
+            }).join(' ')
+
             return todos;
         }
         // render UI
-        function render(){
-            if(!ul)return alert("error");
+        function render() {
             ul.innerHTML = template()
         }
 
@@ -70,22 +70,17 @@
             e.preventDefault()
             if (e.target === form) {
                 const item = document.getElementById("tarea");
-                if(!item.value) return(alert("no puedes dejar el campo vacio"))
-                state.todoList.push(item.value)
+                if (!item.value) return (alert("no puedes dejar el campo vacio"))
+                let data = useState()
+                data.todoList.push(item.value)
+                // le envío lo que venga en data.todoList,
+                setState({
+                    todoList: data.todoList,
+                })
                 item.focus()
                 form.reset()
-                render()
             }
         })
-
-        /* setState({
-            todoList:["hola","chao"],
-        }) */
-
-
-
-      
-
     </script>
 </body>
 
