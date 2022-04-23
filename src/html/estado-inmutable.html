@@ -1,87 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/styles.css" />
     <title>Manipulation manual del dom</title>
-</head>
+  </head>
 
-<body>
-    <header>
-
-    </header>
+  <body>
+    <header></header>
     <main>
-        <h2 style="margin: 0 auto; width: 85%;">Lista de tareas basada en el estado</h2>
-        <form action="" id="todoForm">
-            <input type="text" name="" id="tarea" placeholder="tarea por hacer">
-            <input type="submit" value="Agregar">
-        </form>
+      <h2 style="margin: 0 auto; width: 85%">
+        Lista de tareas basada en el estado
+      </h2>
+      <form action="" id="todoForm">
+        <input type="text" name="" id="tarea" placeholder="tarea por hacer" />
+        <input type="submit" value="Agregar" />
+      </form>
 
-        <ul id="todoList">
-
-        </ul>
+      <ul id="todoList"></ul>
     </main>
     <footer></footer>
     <script>
-        const d = document;
-        const form = d.getElementById("todoForm");
+      const d = document;
+      const form = d.getElementById("todoForm");
 
-        const ul = d.getElementById('todoList')
+      const ul = d.getElementById("todoList");
 
-        // crear una variable para implementar el concepto de estado, normalmente suele ser un objeto
-        // cada atributo que tenga el objeto, es un elemento que queremos controlar
-        const state = {
-            todoList: [],
+      // crear una variable para implementar el concepto de estado, normalmente suele ser un objeto
+      // cada atributo que tenga el objeto, es un elemento que queremos controlar
+      const state = {
+        todoList: [],
+      };
+      // setState(state)
+      const setState = (obj) => {
+        for (let key in obj) {
+          if (obj.hasOwnProperty(key)) {
+            state[key] = obj[key];
+          }
         }
-        // setState(state)
-        const setState = obj => {
-            for (let key in obj) {
-                if (obj.hasOwnProperty(key)) {
-                    state[key] = obj[key];
-                }
-            }
-            render()
-        }
-        // useState(state)
-        const useState = () => {
-            return JSON.parse(JSON.stringify(state))
-        }
+        render();
+      };
+      // useState(state)
+      const useState = () => {
+        return JSON.parse(JSON.stringify(state));
+      };
+      const eliminar = () => {
+        console.log('eliminar')
+      }
+      const template = () => {
+        let estadoTodos = useState().todoList;
 
-        const template = () => {
-            let estadoTodos = useState().todoList;
+        if (estadoTodos < 1) return `<p>sin tareas</p>`;
+        let todos = estadoTodos
+          .map((el) => {
+            return `
+                <li>${el}</li>
+                <button onclick = 'eliminar()'>Eliminar</button>
+            `;
+          })
+          .join(" ");
 
-            if (estadoTodos < 1) return `<p>sin tareas</p>`;
-            let todos = estadoTodos.map(el => {
-                return `<li>${el}</li>`
-            }).join(' ')
+        return todos;
+      };
+      // render UI
+      function render() {
+        ul.innerHTML = template();
+      }
 
-            return todos;
+      d.addEventListener("DOMContentLoaded", render);
+      d.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (e.target === form) {
+          const item = document.getElementById("tarea");
+          if (!item.value) return alert("no puedes dejar el campo vacio");
+          let data = useState();
+          data.todoList.push(item.value);
+          // le envío lo que venga en data.todoList,
+          setState({
+            todoList: data.todoList,
+          });
+          item.focus();
+          form.reset();
         }
-        // render UI
-        function render() {
-            ul.innerHTML = template()
-        }
-
-        d.addEventListener('DOMContentLoaded', render)
-        d.addEventListener('submit', (e) => {
-            e.preventDefault()
-            if (e.target === form) {
-                const item = document.getElementById("tarea");
-                if (!item.value) return (alert("no puedes dejar el campo vacio"))
-                let data = useState()
-                data.todoList.push(item.value)
-                // le envío lo que venga en data.todoList,
-                setState({
-                    todoList: data.todoList,
-                })
-                item.focus()
-                form.reset()
-            }
-        })
+      });
     </script>
-</body>
-
+  </body>
 </html>

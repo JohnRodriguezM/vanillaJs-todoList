@@ -8,7 +8,7 @@ const agregarTarea = () => {
   ul.innerHTML += `
   <li>${input}
   <button
-  class =" btnEliminar">
+  class ="btnEliminar">
         Eliminar
   </button>
   </li>
